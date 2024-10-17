@@ -1,15 +1,18 @@
+import java.util.concurrent.atomic.AtomicReference;
+
 public class Caja {
-    private Double dinero;
+    private AtomicReference<Double> dinero;
 
     public Caja(Double dinero) {
-        this.dinero = dinero;
+        this.dinero = new AtomicReference<>(dinero);
     }
 
+
     public Double getDinero() {
-        return dinero;
+        return dinero.get();
     }
 
     public void setDinero(Double dinero) {
-        this.dinero = dinero;
+        this.dinero.set(dinero);
     }
 }

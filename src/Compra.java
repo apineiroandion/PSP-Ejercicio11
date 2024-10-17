@@ -1,10 +1,13 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Compra extends Thread{
+    ArrayList<Double> precios = new ArrayList<Double>();
+
     public void comprar (Caja caja, Double precioCompra) {
         if (caja.getDinero() >= precioCompra) {
             caja.setDinero(caja.getDinero() - precioCompra);
-            System.out.println("Compra realizada con éxito. Dinero restante: " + caja.getDinero());
+            System.out.println("Compra realizada con éxito("+precioCompra+"). Dinero restante: " + caja.getDinero());
         } else {
             System.out.println("No hay suficiente dinero en la caja para realizar la compra.");
         }
@@ -12,8 +15,13 @@ public class Compra extends Thread{
 
     @Override
     public void run() {
+        precios.add(100.0);
+        precios.add(200.0);
+        precios.add(300.0);
+        precios.add(400.0);
+        precios.add(500.0);
         for (int i = 0; i < 5; i++) {
-            comprar(new Caja(100000.0), new Random().nextDouble() * 1000);
+            comprar(Main.caja, precios.get(i).doubleValue());
         }
     }
 }
